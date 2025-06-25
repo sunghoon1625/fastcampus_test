@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+class Main {
+	public static void main(Strings[] args) {
+		Scanner sc = new Scanner(System.in);
+		String current = sc.next();
+		String drop = sc.next();
+
+		String[] currentUnit = current.split(":");
+
+		int currentHour = Interger.parseInt(currentUnit[0]);
+		int currentMinute = Integer.parseInt(currentUnit[1]);
+		int currentSecond = Integer.parseInt(currentUnit[2]);
+		int currentSecondAmount = currentHour * 3600 + currentMinute * 60 + currentSecond;
+
+		String[] dropUnit = drop.split(":");
+		int dropHour = Integer.parseInt(dropUnit[0]);
+		int dropMinute = Integer.parseInt(dropUnit[1]);
+		int dropSecond = Integer.parseInt(dropUnit[2]);
+		int dropSecondAmount = dropHour * 3600 + dropMinute * 60 + dropSecond;
+
+		int needSecondAmount = dropSecondAmout - currentSecondAmount;
+		if (needSecondAmount <= 0 )
+			needSecondAmount += 24 * 3600;
+
+		int needHour = needSecondAmount / 3600;
+		int needMinute = (needSecondAmount % 3600) / 60;
+		int needSecond = needSecondAmount % 60;
+
+
+		System.out.printf("%02d:%02d:%02d", needHour, needMinute, needSecond);
+	}
+}
+
+
+/*
+	------------------------------
+	 String time = "09:10:59";
+	 int hour = (time.charAt(0) - '0') * 10 + time.charAt(1) - '0';
+	 int minute = (time.charAt(3) - '0') * 10 + time.charAt(4) -'0';
+	 int second = (time.charAt(6) - '0') * 10 + time.charAt(7) - '0';
+
+	 -----------------------------
+
+	 String time = "09:10:59";
+	 int hour = Integer.parseInt(time.substring(0,2));
+	 int minute = Integer.parseInt(time.substring(3,5));
+	 int second = Integer.parseInt(time.substring(6,8));
+
+	 // substring : [0, 2), [3, 5), [6, 8)
+
+	 */
