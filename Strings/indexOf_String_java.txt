@@ -53,4 +53,6 @@ static int indexOf(byte[] src, byte srcCoder, int srcCount,
 	 - jvm parameter adjusting <-> COMPACT_STRINGS, Serialization , packet size, heap allocation, gc
 	 - Lucene search engine structure , kindle book(purchased),
 		 https://dev-gallery.tistory.com/79?category=1132991
+
+		 ELK stacks
 */
