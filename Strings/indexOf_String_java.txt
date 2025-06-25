@@ -1,0 +1,46 @@
+str.indexOf(String str, int fromIndex)
+
+	-> public int indexOf( @NotNull String str, int fromIndex) {
+			return indexOf(value, coder(), length(), str, fromIndex);}
+	
+	-> value :
+		private final byte[] value;
+
+	-> coder()
+		byte coder() {
+			return COMPACT_STRINGS ? coder : UTF16;
+		} // jvm parameter adjusting available ?
+
+
+	-> indexOf(value, coder(), length(), str, fromIndex);
+		 
+
+static int indexOf(byte[] src, byte srcCoder, int srcCount,
+									 String tgtStr, int fromIndex) {
+	fromIndex = Math.clamp(fromIndex, 0, srcCount);
+	int tgtCount = tgtStr.length();
+
+	if(tgtCount > srcCount - fromIndex) {
+		return -1;
+	}
+
+	if (tgtCount == 0 ) {
+		return fromIndex;
+	}
+
+	byte[] tgt = tgtStr.value;
+	byte tgtCoder = tgtStr.coder();
+
+	if (srcCoder == tgtcoder) {
+		return srcCoder == LATIN1
+			? StringLatin.indexOf(src, srcCount, tgt, tgtCount, fromIndex)
+			: StringUTF16.indexOf(src, srcCount, tgt, tgtCount, fromIndex);
+	}
+
+	if (srcCoder == LATIN1) { // && tgtCoder == UTF16
+		return -1;
+	}
+
+	// srcCoder == UTF16 && tgtCoder == LATIN1
+	return StringUTF16.indexOfLatin1(src, srcCount, tgt, tgtCount, fromIndex);
+}

@@ -6,7 +6,10 @@ class Main {
 		String doc = sc.nextLine();
 		String doc = sc.nextLine();
 
-		int count = 0;
-		int startIndex = 0;
+		String replaced = doc.replace(word, "");
+		int length = doc.length () - replaced.length();
+		int count = length / word.length();
 
-		while (true)
+		System.out.println(count);
+	}
+}
