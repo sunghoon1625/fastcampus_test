@@ -9,7 +9,9 @@ str.indexOf(String str, int fromIndex)
 	-> coder()
 		byte coder() {
 			return COMPACT_STRINGS ? coder : UTF16;
-		} // jvm parameter adjusting available ?
+		} // jvm parameter adjusting available
+			// search more subjects 
+			// COMPACT_STRINGS, Serialization, packet size, heap allocation
 
 
 	-> indexOf(value, coder(), length(), str, fromIndex);
